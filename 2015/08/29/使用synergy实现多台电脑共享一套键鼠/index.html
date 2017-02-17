@@ -1,0 +1,1059 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="synergy,共享,键盘," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iblogc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="因为家里有一台台式和一台笔记本，台式Windows10为日常使用，笔记本Ubuntu&amp;amp;Windows7，以前一直在Windows上敲代码，现在正转向Ubuntu，但家里桌子上摆放两台电脑已经有点挤了，如果再来两套键鼠那就成二手电脑配件甩卖铺了，所以上网查了下看看有没有软件能实现两台电脑共享一套键盘的，还真找到了一款叫Synergy的软件，支持Windows, Mac OS X, Linu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Synergy实现多台电脑共享一套键鼠">
+<meta property="og:url" content="http://me.iblogc.com/2015/08/29/使用synergy实现多台电脑共享一套键鼠/index.html">
+<meta property="og:site_name" content="iblogc's blog">
+<meta property="og:description" content="因为家里有一台台式和一台笔记本，台式Windows10为日常使用，笔记本Ubuntu&amp;amp;Windows7，以前一直在Windows上敲代码，现在正转向Ubuntu，但家里桌子上摆放两台电脑已经有点挤了，如果再来两套键鼠那就成二手电脑配件甩卖铺了，所以上网查了下看看有没有软件能实现两台电脑共享一套键盘的，还真找到了一款叫Synergy的软件，支持Windows, Mac OS X, Linu">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-logo.png">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端配置首页.png">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端添加客户端-01.png">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端添加客户端-02.png">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端添加客户端-03.png">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端启动.png">
+<meta property="og:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-Ubuntu客户端配置首页.png">
+<meta property="og:updated_time" content="2017-02-09T05:21:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Synergy实现多台电脑共享一套键鼠">
+<meta name="twitter:description" content="因为家里有一台台式和一台笔记本，台式Windows10为日常使用，笔记本Ubuntu&amp;amp;Windows7，以前一直在Windows上敲代码，现在正转向Ubuntu，但家里桌子上摆放两台电脑已经有点挤了，如果再来两套键鼠那就成二手电脑配件甩卖铺了，所以上网查了下看看有没有软件能实现两台电脑共享一套键盘的，还真找到了一款叫Synergy的软件，支持Windows, Mac OS X, Linu">
+<meta name="twitter:image" content="http://iblogc.qiniudn.com/2017-02-09-Synergy-logo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '2739016',
+      author: 'ROOT'
+    },
+    algolia: {
+      applicationID: 'PGLEOEFW66',
+      apiKey: '9e021ceac0fcb29be0a75df5b157218b',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://me.iblogc.com/2015/08/29/使用synergy实现多台电脑共享一套键鼠/"/>
+
+
+
+
+
+  <title> 使用Synergy实现多台电脑共享一套键鼠 | iblogc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'qG7T6aqK8Yc9wkYFQZSYbiHnFjGresFJrmQ3GILJA80', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dbe5ded201831a4b07cca26d70e498b6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">iblogc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">Just do it.</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            menu.guestbook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://me.iblogc.com/2015/08/29/使用synergy实现多台电脑共享一套键鼠/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="沙丁鱼">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="iblogc's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="iblogc's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Synergy实现多台电脑共享一套键鼠
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-08-29T23:52:41+08:00">
+                2015-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/优化辅助/" itemprop="url" rel="index">
+                    <span itemprop="name">优化辅助</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/08/29/使用synergy实现多台电脑共享一套键鼠/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/29/使用synergy实现多台电脑共享一套键鼠/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/08/29/使用synergy实现多台电脑共享一套键鼠/" class="leancloud_visitors" data-flag-title="使用Synergy实现多台电脑共享一套键鼠">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-logo.png" alt="Synergy-logo"></p>
+<p>因为家里有一台台式和一台笔记本，台式<code>Windows10</code>为日常使用，笔记本<code>Ubuntu&amp;Windows7</code>，以前一直在<code>Windows</code>上敲代码，现在正转向<code>Ubuntu</code>，但家里桌子上摆放两台电脑已经有点挤了，如果再来两套键鼠那就成二手电脑配件甩卖铺了，所以上网查了下看看有没有软件能实现两台电脑共享一套键盘的，还真找到了一款叫<code>Synergy</code>的软件，支持<code>Windows</code>, <code>Mac OS X</code>, <code>Linux</code>三大系统，软件是下载收费，使用使用免费，官网上标明基础版$10，高级版$29。下面我说说我自己的配置过程。<br><a id="more"></a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在<code>Ubuntu</code>里打开终端，输入以下命令进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install synergy</div></pre></td></tr></table></figure></p>
+<p>在<code>Windwos</code>上双击安装。</p>
+<p><em><code>Ubuntu</code>我安装的是1.6.2，<code>Windwos</code>上是1.7.4 x64</em></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="服务器设置"><a href="#服务器设置" class="headerlink" title="服务器设置"></a>服务器设置</h3><blockquote>
+<p><code>synergy</code>需要一台电脑做为服务端，其它电脑做为客户端来连接服务端。<br>本来是我想选择<code>Ubuntu</code>做为服务端的，但设置好后链接失败提示为<code>WARNING: failed to connect to server: incompatible client 1.5</code>，似乎是不兼容，但我的客户端版本是<code>1.6.2</code>不是<code>1.5</code>啊，所以作罢，只得选用<code>Windwos</code>来做服务端。</p>
+</blockquote>
+<ol>
+<li><p>我们选用<code>Windwos</code>来做服务端，在<code>Windwos</code>打开软件，选择「server」；<br><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端配置首页.png" alt="Synergy-Windows服务端配置首页"></p>
+</li>
+<li><p>点击「设置服务端」进行添加客户端操作；<br><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端添加客户端-01.png" alt="Synergy-Windows服务端添加客户端-01"></p>
+</li>
+<li><p>从右上角手动电脑图标到下方的格子里，这里的格式位置对应你当前几台电脑的实际的垂直平台位置，中间这台是服务端，也就是我现在操作的这台<code>Windows</code>，我的<code>Ubuntu</code>电脑放在<code>Windows</code>电脑的左侧，所以我把电脑图标拖到中间左侧的格子里；<br><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端添加客户端-02.png" alt="Synergy-Windows服务端添加客户端-02"></p>
+</li>
+<li><p>双击电脑图标进行编辑，这里我们只需要输入客户端电脑的计算机名，其它都默认；<br><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端添加客户端-03.png" alt="Synergy-Windows服务端添加客户端-03"></p>
+</li>
+<li><p>设置好后点击再次ok，回到设置首页，点击「开始」启动服务端；<br><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-Windows服务端启动.png" alt="Synergy-Windows服务端启动"></p>
+</li>
+</ol>
+<h3 id="客户端设置"><a href="#客户端设置" class="headerlink" title="客户端设置"></a>客户端设置</h3><ol>
+<li>客户端比较简单，在<code>Ubuntu</code>上打开<code>Synergy</code>，选择「Client」，在<code>Server IP</code>里输入服务端的IP，点击「Start」即可；<br><img src="http://iblogc.qiniudn.com/2017-02-09-Synergy-Ubuntu客户端配置首页.png" alt="Synergy-Ubuntu客户端配置首页"></li>
+</ol>
+<h3 id="开机自启"><a href="#开机自启" class="headerlink" title="开机自启"></a>开机自启</h3><p>要在<code>Ubuntu</code>开机在登录界面前启动<code>synergy</code>，编辑<code>/etc/lightdm/lightdm.conf</code>文件添加<code>display-setup-script=/usr/bin/synergyc 192.168.9.102</code>，把<code>192.168.9.102</code>换成你自己的<code>synergy</code>服务端IP。</p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>到这里你就会发现你可鼠标可以在两个电脑屏幕上移动了，像我刚才配置的是在<code>Windows</code>左侧添加了<code>Ubuntu</code>，所以当我在<code>Windows</code>上把鼠标向左移动，并移到边界，再继续左移时，鼠标就会出现在<code>Ubuntu</code>屏幕上，键盘的行为跟随鼠标的，即鼠标在哪个屏幕，键盘输入就对应哪个屏幕的系统。</p>
+<blockquote>
+<p>网上说<code>Synergy</code>支持在不同电脑间复制粘贴，目前我自己没有试成功，有知道朋友可以和说。</p>
+</blockquote>
+<h2 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h2><p>项目主页：<a href="https://github.com/synergy/synergy" target="_blank" rel="external">https://github.com/synergy/synergy</a></p>
+<h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>2015-08-29 初稿<br>2015-09-03 补充<code>Ubuntu</code>客户端自启明说</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/synergy/" rel="tag"># synergy</a>
+          
+            <a href="/tags/共享/" rel="tag"># 共享</a>
+          
+            <a href="/tags/键盘/" rel="tag"># 键盘</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/29/ubuntu从14-10升级到15-04/" rel="next" title="ubuntu从14.10升级到15.04">
+                <i class="fa fa-chevron-left"></i> ubuntu从14.10升级到15.04
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/08/django内置的flatpages应用/" rel="prev" title="Django内置的flatpages应用">
+                Django内置的flatpages应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/08/29/使用synergy实现多台电脑共享一套键鼠/"
+     data-title="使用Synergy实现多台电脑共享一套键鼠"
+     data-content=""
+     data-url="http://me.iblogc.com/2015/08/29/使用synergy实现多台电脑共享一套键鼠/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/08/29/使用synergy实现多台电脑共享一套键鼠/"
+           data-title="使用Synergy实现多台电脑共享一套键鼠" data-url="http://me.iblogc.com/2015/08/29/使用synergy实现多台电脑共享一套键鼠/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/avatar.png"
+               alt="沙丁鱼" />
+          <p class="site-author-name" itemprop="name">沙丁鱼</p>
+          <p class="site-description motion-element" itemprop="description">iblogc</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iblogc" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器设置"><span class="nav-number">2.1.</span> <span class="nav-text">服务器设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端设置"><span class="nav-number">2.2.</span> <span class="nav-text">客户端设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机自启"><span class="nav-number">2.3.</span> <span class="nav-text">开机自启</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成"><span class="nav-number">3.</span> <span class="nav-text">完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关"><span class="nav-number">4.</span> <span class="nav-text">相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新记录"><span class="nav-number">5.</span> <span class="nav-text">更新记录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">沙丁鱼</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iblogc"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("iSVaGDh3pvPppn4ATzdswCRj-gzGzoHsz", "FneGhBeiPNdFAiN9elNeFAxc");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.0"></script>
+
+
+
+</body>
+</html>
